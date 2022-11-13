@@ -1,8 +1,8 @@
 ---
-import HomeLayout from "../layouts/HomeLayout.astro";
+import PageLayout from "../../layouts/PageLayout.astro";
 ---
 
-<HomeLayout title="Rohid - Home">
+<PageLayout title="Blog">
   <main>
     <div class="mx-auto max-w-6xl px-4 md:px-6 py-12 space-y-12">
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
@@ -10,16 +10,17 @@ import HomeLayout from "../layouts/HomeLayout.astro";
           [1, 1, 1, 1, 1, 1, 1, 1, 1].map((_) => (
             <article>
               <a href="/">
-                <h3 class="text-2xl font-semibold text-gray-50 my-6">
+                <h3 class="text-2xl font-medium text-gray-50 my-4">
                   Lorem ipsum dolor, sit amet consectetur adipisicing.
                 </h3>
                 <p class="my-4 line-clamp-3">
-                  Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                  Nostrum beatae earum consequuntur possimus, assumenda ea,
-                  ducimus modi ad ipsum a deserunt? Quod architecto earum modi
-                  rem recusandae est ducimus laborum, explicabo ea aliquid
-                  laboriosam. Id reprehenderit neque, porro quas assumenda quis
-                  sunt culpa ex officia. Dolore animi explicabo ratione facilis!
+                  Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                  Culpa velit similique odit obcaecati nihil? Modi doloremque
+                  laudantium enim delectus dicta quis explicabo laboriosam quia,
+                  illum, id veritatis eum accusamus corrupti odio ipsam.
+                  Temporibus nemo perspiciatis minus iusto quidem vitae, nulla
+                  animi non! Consequatur impedit laborum fugit itaque?
+                  Perspiciatis, inventore ipsum.
                 </p>
                 <p class="my-2">
                   <span>2 days ago</span>
@@ -33,4 +34,4 @@ import HomeLayout from "../layouts/HomeLayout.astro";
       </div>
     </div>
   </main>
-</HomeLayout>
+</PageLayout>
