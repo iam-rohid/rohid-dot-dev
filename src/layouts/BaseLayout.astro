@@ -18,6 +18,19 @@ const { title } = Astro.props;
     <link rel="stylesheet" href="/fontawesome/css/brands.css" />
     <link rel="stylesheet" href="/fontawesome/css/regular.css" />
     <link rel="stylesheet" href="/fontawesome/css/solid.css" />
+
+    <!-- Google Tags -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-989F7PZJ09"
+    ></script>
+    <script
+      set:html={`
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-989F7PZJ09');
+    `}
+    ></script>
   </head>
   <body class="bg-white text-gray-600 dark:bg-gray-900 dark:text-gray-300">
     <slot />
