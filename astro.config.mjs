@@ -12,8 +12,11 @@ import { toString } from "mdast-util-to-string";
 export default defineConfig({
   site: "https://rohid.dev",
   markdown: {
-    syntaxHighlight: "prism",
     remarkPlugins: [remarkReadingTime],
+  },
+  mdx: {
+    syntaxHighlight: "prism",
+    drafts: true,
   },
   integrations: [tailwind(), sitemap(), mdx()],
 });

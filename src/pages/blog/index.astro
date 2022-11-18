@@ -1,5 +1,10 @@
 ---
-import PageLayout from "../../layouts/PageLayout.astro";
+import ArticleCard from "@/components/ArticleCard.astro";
+import PageLayout from "@/layouts/PageLayout.astro";
+import type { ArticleFrontmatter } from "@/types/article-frontmatter";
+
+const posts = await Astro.glob<ArticleFrontmatter>("./*.mdx");
+const filteredPosts = posts.filter((post) => !post.frontmatter.draft);
 ---
 
 <PageLayout title="Blog">
@@ -7,28 +12,14 @@ import PageLayout from "../../layouts/PageLayout.astro";
     <div class="mx-auto max-w-6xl px-4 md:px-6 py-12 space-y-12">
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
         {
-          [1, 1, 1, 1, 1, 1, 1, 1, 1].map((_) => (
-            <article>
-              <a href="/">
-                <h3 class="text-2xl font-medium text-gray-50 my-4">
-                  Lorem ipsum dolor, sit amet consectetur adipisicing.
-                </h3>
-                <p class="my-4 line-clamp-3">
-                  Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                  Culpa velit similique odit obcaecati nihil? Modi doloremque
-                  laudantium enim delectus dicta quis explicabo laboriosam quia,
-                  illum, id veritatis eum accusamus corrupti odio ipsam.
-                  Temporibus nemo perspiciatis minus iusto quidem vitae, nulla
-                  animi non! Consequatur impedit laborum fugit itaque?
-                  Perspiciatis, inventore ipsum.
-                </p>
-                <p class="my-2">
-                  <span>2 days ago</span>
-                  <span>•</span>
-                  <span>3 min read</span>
-                </p>
-              </a>
-            </article>
+          filteredPosts.map((item) => (
+            <ArticleCard
+              url={item.url}
+              title={item.frontmatter.title}
+              description={item.frontmatter.description}
+              pubDate={item.frontmatter.pubDate}
+              readingTime={item.frontmatter.readingTime}
+            />
           ))
         }
       </div>

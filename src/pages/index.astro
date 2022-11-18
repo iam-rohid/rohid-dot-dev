@@ -1,5 +1,10 @@
 ---
-import HomeLayout from "../layouts/HomeLayout.astro";
+import ArticleCard from "@/components/ArticleCard.astro";
+import HomeLayout from "@/layouts/HomeLayout.astro";
+import type { ArticleFrontmatter } from "@/types/article-frontmatter";
+
+const posts = await Astro.glob<ArticleFrontmatter>("./blog/*.mdx");
+const filteredPosts = posts.filter((post) => !post.frontmatter.draft);
 ---
 
 <HomeLayout title="Rohid - Home">
@@ -7,27 +12,14 @@ import HomeLayout from "../layouts/HomeLayout.astro";
     <div class="mx-auto max-w-6xl px-4 md:px-6 py-12 space-y-12">
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
         {
-          [1, 1, 1, 1, 1, 1, 1, 1, 1].map((_) => (
-            <article>
-              <a href="/">
-                <h3 class="text-2xl font-semibold text-gray-50 my-6">
-                  Lorem ipsum dolor, sit amet consectetur adipisicing.
-                </h3>
-                <p class="my-4 line-clamp-3">
-                  Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                  Nostrum beatae earum consequuntur possimus, assumenda ea,
-                  ducimus modi ad ipsum a deserunt? Quod architecto earum modi
-                  rem recusandae est ducimus laborum, explicabo ea aliquid
-                  laboriosam. Id reprehenderit neque, porro quas assumenda quis
-                  sunt culpa ex officia. Dolore animi explicabo ratione facilis!
-                </p>
-                <p class="my-2">
-                  <span>2 days ago</span>
-                  <span>•</span>
-                  <span>3 min read</span>
-                </p>
-              </a>
-            </article>
+          filteredPosts.map((item) => (
+            <ArticleCard
+              url={item.url}
+              title={item.frontmatter.title}
+              description={item.frontmatter.description}
+              pubDate={item.frontmatter.pubDate}
+              readingTime={item.frontmatter.readingTime}
+            />
           ))
         }
       </div>

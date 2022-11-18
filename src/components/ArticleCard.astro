@@ -1,0 +1,29 @@
+---
+import { format } from "date-fns";
+
+interface Props {
+  url: string | undefined;
+  title: string;
+  description: string;
+  readingTime: string;
+  pubDate: string;
+}
+
+const { url, title, description, readingTime, pubDate } = Astro.props;
+---
+
+<article>
+  <a href={url}>
+    <h3 class="text-2xl font-semibold text-gray-900 dark:text-gray-50 my-6">
+      {title}
+    </h3>
+    <p class="my-4 line-clamp-3">{description}</p>
+    <p class="my-2">
+      <span>
+        {format(new Date(pubDate), "MMM dd, yyyy")}
+      </span>
+      <span>•</span>
+      <span>{readingTime}</span>
+    </p>
+  </a>
+</article>
