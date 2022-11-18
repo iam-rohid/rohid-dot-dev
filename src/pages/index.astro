@@ -1,7 +1,7 @@
 ---
-import ArticleCard from "@/components/ArticleCard.astro";
-import HomeLayout from "@/layouts/HomeLayout.astro";
-import type { ArticleFrontmatter } from "@/types/article-frontmatter";
+import ArticleCard from "@components/ArticleCard.astro";
+import HomeLayout from "@layouts/HomeLayout.astro";
+import type { ArticleFrontmatter } from "@utilities/types/article-frontmatter";
 
 const posts = await Astro.glob<ArticleFrontmatter>("./blog/*.mdx");
 const filteredPosts = posts.filter((post) => !post.frontmatter.draft);
