@@ -1,0 +1,21 @@
+---
+interface Props {
+  name: string;
+  href: string;
+}
+
+const { name, href } = Astro.props;
+const isActive = Astro.url.pathname.startsWith(href);
+---
+
+<li>
+  <a
+    class:list={[
+      {
+        "text-gray-900 dark:text-gray-50": isActive,
+        "hover:text-gray-900 dark:hover:text-gray-50": !isActive,
+      },
+    ]}
+    href={href}>{name}</a
+  >
+</li>

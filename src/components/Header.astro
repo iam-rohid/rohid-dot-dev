@@ -1,26 +1,22 @@
+---
+import HeaderLink from "./HeaderLink.astro";
+
+export async function getStaticPaths() {}
+---
+
 <header class="bg-white dark:bg-gray-900 sticky top-0 z-20">
   <div
     class="h-16 flex items-center gap-4 md:gap-6 mx-auto max-w-6xl px-4 md:px-6"
   >
     <nav class="flex-1">
       <ul class="flex items-center gap-4 md:gap-6">
-        <li>
-          <a class="hover:text-gray-900 dark:hover:text-gray-50" href="/"
-            >Home</a
-          >
-        </li>
-        <li>
-          <a class="hover:text-gray-900 dark:hover:text-gray-50" href="/blog"
-            >Blog</a
-          >
-        </li>
-        <li>
-          <a
-            class="hover:text-gray-900 dark:hover:text-gray-50"
-            href="mailto:rohidul209@gmail.com?subject=Contact with Rohid"
-            >Contact</a
-          >
-        </li>
+        <HeaderLink href="/" name="Home" />
+        <HeaderLink href="/blog" name="Blog" />
+        <HeaderLink href="/works" name="Works" />
+        <HeaderLink
+          href="mailto:rohidul209@gmail.com?subject=Contact with Rohid"
+          name="Contact"
+        />
       </ul>
     </nav>
 
