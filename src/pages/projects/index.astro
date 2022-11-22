@@ -1,0 +1,26 @@
+---
+import ProjectCard from "@components/ProjectCard.astro";
+import PageLayout from "@layouts/PageLayout.astro";
+import type { ProjectFrontmatter } from "@utilities/types/project-frontmatter";
+
+const posts = await Astro.glob<ProjectFrontmatter>("./*.mdx");
+const filteredPosts = posts.filter((post) => !post.frontmatter.draft);
+---
+
+<PageLayout
+  title="Projects - Rohid"
+  description="All Projects from Rohid"
+  tags={["projects", "project", "work", "portfolio", "works", "startups"]}
+>
+  <main>
+    <div class="mx-auto max-w-6xl px-4 md:px-6 py-12 space-y-12">
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+        {
+          filteredPosts.map((item) => (
+            <ProjectCard url={item.url ?? ""} project={item.frontmatter} />
+          ))
+        }
+      </div>
+    </div>
+  </main>
+</PageLayout>

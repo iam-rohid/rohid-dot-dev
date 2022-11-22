@@ -14,11 +14,11 @@ export interface Props {
 }
 
 const {
-  content: { title, pubDate, readingTime },
+  content: { title, pubDate, readingTime, description },
 } = Astro.props;
 ---
 
-<BaseLayout title={title}>
+<BaseLayout title={`${title} - Rohid`} description={description}>
   <Header />
   <main>
     <div class="mx-auto max-w-3xl px-4 md:px-6 py-16">

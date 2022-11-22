@@ -1,28 +1,47 @@
 ---
 import ArticleCard from "@components/ArticleCard.astro";
+import ProjectCard from "@components/ProjectCard.astro";
 import HomeLayout from "@layouts/HomeLayout.astro";
 import type { ArticleFrontmatter } from "@utilities/types/article-frontmatter";
+import type { ProjectFrontmatter } from "@utilities/types/project-frontmatter";
 
 const posts = await Astro.glob<ArticleFrontmatter>("./blog/*.mdx");
+const projects = await Astro.glob<ProjectFrontmatter>("./projects/*.mdx");
 const filteredPosts = posts.filter((post) => !post.frontmatter.draft);
+const featuredProjects = projects.filter(
+  (project) => !project.frontmatter.draft && project.frontmatter.featured
+);
 ---
 
-<HomeLayout title="Rohid - Home">
+<HomeLayout title="Home - Rohid">
   <main>
-    <div class="mx-auto max-w-6xl px-4 md:px-6 py-12 space-y-12">
-      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-        {
-          filteredPosts.map((item) => (
-            <ArticleCard
-              url={item.url}
-              title={item.frontmatter.title}
-              description={item.frontmatter.description}
-              pubDate={item.frontmatter.pubDate}
-              readingTime={item.frontmatter.readingTime}
-            />
-          ))
-        }
-      </div>
+    <div class="mx-auto max-w-6xl px-4 md:px-6 py-12 space-y-16">
+      <section id="posts">
+        <h2 class="text-2xl font-semibold my-4">Latest Posts</h2>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+          {
+            filteredPosts.map((item) => (
+              <ArticleCard
+                url={item.url}
+                title={item.frontmatter.title}
+                description={item.frontmatter.description}
+                pubDate={item.frontmatter.pubDate}
+                readingTime={item.frontmatter.readingTime}
+              />
+            ))
+          }
+        </div>
+      </section>
+      <section id="projects">
+        <h2 class="text-2xl font-semibold my-4">Featured Projects</h2>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+          {
+            featuredProjects.map((item) => (
+              <ProjectCard url={item.url ?? ""} project={item.frontmatter} />
+            ))
+          }
+        </div>
+      </section>
     </div>
   </main>
 </HomeLayout>
